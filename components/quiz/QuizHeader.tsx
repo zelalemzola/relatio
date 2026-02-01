@@ -26,7 +26,7 @@ export function QuizHeader({
 
         <div className="flex items-center space-x-2">
           <span className="text-2xl font-bold">
-            Re<span className="text-blue-600">la</span>
+            Re<span className="text-purple-600">la</span>
             <span className="text-pink-500">t</span>io
           </span>
         </div>
@@ -40,7 +40,7 @@ export function QuizHeader({
       <div className="max-w-md mx-auto mt-4">
         <div className="w-full bg-gray-200 rounded-full h-1">
           <div
-            className="bg-blue-600 h-1 rounded-full transition-all duration-300"
+            className="bg-gradient-to-r from-purple-600 to-pink-600 h-1 rounded-full transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>

@@ -29,13 +29,17 @@ export interface QuizQuestionType {
     maxLabel: string;
   };
   placeholder?: string;
+  genderSpecific?: {
+    male?: Partial<QuizQuestionType>;
+    female?: Partial<QuizQuestionType>;
+  };
 }
 
-export const quizQuestions: QuizQuestionType[] = [
+export const baseQuizQuestions: QuizQuestionType[] = [
   {
     id: 1,
     type: "age-selection",
-    title: "LET'S CREATE YOUR PERSONAL PLAN TO REKINDLE YOUR LOVE",
+    title: "LET'S CREATE YOUR PERSONAL PLAN TO STRENGTHEN YOUR RELATIONSHIP",
     options: [
       { text: "Age: 18-29", value: "18-29", emoji: "👫" },
       { text: "Age: 30-44", value: "30-44", emoji: "👨‍👩‍👧" },
@@ -70,7 +74,7 @@ export const quizQuestions: QuizQuestionType[] = [
   {
     id: 5,
     type: "emoji-options",
-    title: "Can you sometimes be arrogant?",
+    title: "Can you sometimes be stubborn in discussions?",
     options: [
       { text: "I can be", value: "yes", emoji: "😏" },
       {
@@ -131,7 +135,15 @@ export const quizQuestions: QuizQuestionType[] = [
   {
     id: 9,
     type: "emoji-options",
-    title: "Is your Ex more rational or emotional?",
+    title: "Is your partner more rational or emotional?",
+    genderSpecific: {
+      male: {
+        title: "Is your husband more rational or emotional?",
+      },
+      female: {
+        title: "Is your wife more rational or emotional?",
+      },
+    },
     options: [
       { text: "More rational", value: "rational", emoji: "🧠" },
       { text: "More emotional", value: "emotional", emoji: "💖" },
@@ -141,7 +153,15 @@ export const quizQuestions: QuizQuestionType[] = [
   {
     id: 10,
     type: "emoji-options",
-    title: "Your Ex rather...",
+    title: "Your partner rather...",
+    genderSpecific: {
+      male: {
+        title: "Your husband rather...",
+      },
+      female: {
+        title: "Your wife rather...",
+      },
+    },
     options: [
       {
         text: "Likes to be the center of attention",
@@ -154,7 +174,15 @@ export const quizQuestions: QuizQuestionType[] = [
   {
     id: 11,
     type: "rating-scale",
-    title: "Rate how open your Ex is to new experiences",
+    title: "Rate how open your partner is to new experiences",
+    genderSpecific: {
+      male: {
+        title: "Rate how open your husband is to new experiences",
+      },
+      female: {
+        title: "Rate how open your wife is to new experiences",
+      },
+    },
     ratingRange: {
       min: 1,
       max: 5,
@@ -165,269 +193,368 @@ export const quizQuestions: QuizQuestionType[] = [
   {
     id: 12,
     type: "text-only",
-    title: "What was the last time you were together as a couple?",
+    title: "How long have you been together as a couple?",
     options: [
-      { text: "Less than a week ago", value: "week" },
-      { text: "This month", value: "month" },
-      { text: "1-3 months ago", value: "1-3months" },
-      { text: "More than 3 months ago", value: "3months+" },
+      { text: "Less than 6 months", value: "6months-" },
+      { text: "6 months to 1 year", value: "6months-1year" },
+      { text: "1-3 years", value: "1-3years" },
+      { text: "3-5 years", value: "3-5years" },
+      { text: "More than 5 years", value: "5years+" },
     ],
   },
   {
     id: 13,
     type: "text-only",
-    title: "Tell us more about the breakup",
+    title: "What's your current relationship status?",
     options: [
-      { text: "I was broken up with", value: "dumped" },
-      { text: "I broke up with him", value: "dumper" },
-      { text: "Breakup was mutual", value: "mutual" },
-      { text: "Other", value: "other" },
+      { text: "Dating", value: "dating" },
+      { text: "In a committed relationship", value: "committed" },
+      { text: "Engaged", value: "engaged" },
+      { text: "Married", value: "married" },
+      { text: "It's complicated", value: "complicated" },
     ],
   },
   {
     id: 14,
     type: "multi-select",
-    title: "What issues did you experience in your relationship?",
+    title: "What areas would you like to improve in your relationship?",
     subtitle: "(Choose up to 3)",
     maxSelections: 3,
     options: [
-      { text: "Constant arguing", value: "arguing", emoji: "😣" },
-      { text: "Lack of communication", value: "communication", emoji: "🤐" },
+      { text: "Better communication", value: "communication", emoji: "💬" },
       {
-        text: "Loss of emotional or physical intimacy",
-        value: "intimacy",
-        emoji: "🙏",
+        text: "More emotional intimacy",
+        value: "emotional-intimacy",
+        emoji: "💕",
       },
-      {
-        text: "Incompatibility in long-term goals",
-        value: "goals",
-        emoji: "🎯",
-      },
-      { text: "Financial disagreements", value: "financial", emoji: "💰" },
+      { text: "Physical intimacy", value: "physical-intimacy", emoji: "🔥" },
+      { text: "Conflict resolution", value: "conflict", emoji: "🤝" },
+      { text: "Quality time together", value: "quality-time", emoji: "⏰" },
+      { text: "Trust building", value: "trust", emoji: "🛡️" },
+      { text: "Future planning", value: "future", emoji: "🎯" },
     ],
   },
   {
     id: 15,
     type: "emoji-options",
-    title: "How long were you and your Ex together?",
+    title: "How would you describe your communication style?",
     options: [
-      { text: "More than 3 years", value: "3years+", emoji: "😊" },
-      { text: "From 1 to 3 years", value: "1-3years", emoji: "🙂" },
-      { text: "From 6 months to 1 year", value: "6months-1year", emoji: "😐" },
-      { text: "Less than 6 months", value: "6months-", emoji: "😕" },
+      { text: "Direct and straightforward", value: "direct", emoji: "🎯" },
+      { text: "Gentle and considerate", value: "gentle", emoji: "🌸" },
+      { text: "Passionate and expressive", value: "passionate", emoji: "🔥" },
+      { text: "Quiet and thoughtful", value: "thoughtful", emoji: "🤔" },
     ],
   },
   {
     id: 16,
     type: "emoji-options",
-    title: "What is your current relationship with your Ex?",
+    title: "How do you typically handle disagreements?",
     options: [
-      { text: 'I use the "No Contact Rule"', value: "no-contact", emoji: "😐" },
-      { text: 'We discuss only "business"', value: "business", emoji: "🤝" },
-      { text: "We talk periodically", value: "periodic", emoji: "🙂" },
-      { text: "We are still good friends", value: "friends", emoji: "😊" },
-      {
-        text: "We had intimate contact since the breakup",
-        value: "intimate",
-        emoji: "😏",
-      },
+      { text: "Talk it out immediately", value: "immediate", emoji: "💬" },
+      { text: "Take time to cool down first", value: "cool-down", emoji: "🧘" },
+      { text: "Avoid conflict when possible", value: "avoid", emoji: "😌" },
+      { text: "Get emotional and passionate", value: "emotional", emoji: "😤" },
     ],
   },
   {
     id: 17,
-    type: "emoji-options",
-    title: "Is your Ex dating someone else?",
-    options: [
-      { text: "Definitely not", value: "no", emoji: "😊" },
-      { text: "I don't know", value: "unknown", emoji: "🤔" },
-      { text: "Probably yes", value: "probably", emoji: "😕" },
-      { text: "Definitely is", value: "yes", emoji: "😞" },
-    ],
+    type: "rating-scale",
+    title: "How satisfied are you with your current relationship?",
+    ratingRange: {
+      min: 1,
+      max: 5,
+      minLabel: "Not satisfied",
+      maxLabel: "Very satisfied",
+    },
   },
   {
     id: 18,
     type: "emoji-options",
-    title:
-      "Sometimes, I want to text him and change my mind at the last second",
+    title: "What's your biggest relationship strength?",
+    genderSpecific: {
+      male: {
+        options: [
+          { text: "I'm a great listener", value: "listener", emoji: "👂" },
+          { text: "I'm very supportive", value: "supportive", emoji: "🤗" },
+          {
+            text: "I'm romantic and thoughtful",
+            value: "romantic",
+            emoji: "💝",
+          },
+          {
+            text: "I'm reliable and trustworthy",
+            value: "reliable",
+            emoji: "🛡️",
+          },
+          { text: "I bring humor and fun", value: "humor", emoji: "😄" },
+        ],
+      },
+      female: {
+        options: [
+          {
+            text: "I'm very caring and nurturing",
+            value: "caring",
+            emoji: "🤱",
+          },
+          {
+            text: "I'm an excellent communicator",
+            value: "communicator",
+            emoji: "💬",
+          },
+          {
+            text: "I'm passionate and loving",
+            value: "passionate",
+            emoji: "❤️",
+          },
+          {
+            text: "I'm independent and strong",
+            value: "independent",
+            emoji: "💪",
+          },
+          {
+            text: "I'm understanding and patient",
+            value: "understanding",
+            emoji: "🌸",
+          },
+        ],
+      },
+    },
     options: [
-      { text: "Agree", value: "agree", emoji: "😅" },
-      { text: "Somehow agree", value: "somewhat", emoji: "😊" },
-      { text: "Disagree", value: "disagree", emoji: "🤔" },
+      { text: "I'm a great listener", value: "listener", emoji: "👂" },
+      { text: "I'm very supportive", value: "supportive", emoji: "🤗" },
+      { text: "I'm romantic and thoughtful", value: "romantic", emoji: "💝" },
+      { text: "I'm reliable and trustworthy", value: "reliable", emoji: "🛡️" },
+      { text: "I bring humor and fun", value: "humor", emoji: "😄" },
     ],
   },
   {
     id: 19,
-    type: "emoji-options",
-    title: "What would you like to improve in your relationship?",
+    type: "multi-select",
+    title: "What would make your relationship even better?",
+    subtitle: "(Choose up to 3)",
+    maxSelections: 3,
+    genderSpecific: {
+      male: {
+        options: [
+          {
+            text: "More appreciation from her",
+            value: "appreciation",
+            emoji: "🙏",
+          },
+          {
+            text: "Better understanding of her needs",
+            value: "understanding",
+            emoji: "💡",
+          },
+          { text: "More physical affection", value: "affection", emoji: "🤗" },
+          {
+            text: "Shared hobbies and interests",
+            value: "hobbies",
+            emoji: "🎯",
+          },
+          { text: "Less stress and more fun", value: "fun", emoji: "🎉" },
+          { text: "Better work-life balance", value: "balance", emoji: "⚖️" },
+        ],
+      },
+      female: {
+        options: [
+          {
+            text: "More emotional support",
+            value: "emotional-support",
+            emoji: "💕",
+          },
+          { text: "Better communication", value: "communication", emoji: "💬" },
+          {
+            text: "More quality time together",
+            value: "quality-time",
+            emoji: "⏰",
+          },
+          { text: "Feeling more desired", value: "desired", emoji: "💖" },
+          { text: "More romance and surprises", value: "romance", emoji: "🌹" },
+          {
+            text: "Shared future planning",
+            value: "future-planning",
+            emoji: "🏡",
+          },
+        ],
+      },
+    },
     options: [
-      { text: "Emotional support", value: "emotional", emoji: "🤗" },
-      { text: "Communication", value: "communication", emoji: "👋" },
-      { text: "Intimacy", value: "intimacy", emoji: "💖" },
-      { text: "Feeling desired", value: "desired", emoji: "💥" },
-      { text: "Financial stability", value: "financial", emoji: "💰" },
-      { text: "Attention and presents", value: "attention", emoji: "🎁" },
+      {
+        text: "More emotional support",
+        value: "emotional-support",
+        emoji: "💕",
+      },
+      { text: "Better communication", value: "communication", emoji: "💬" },
+      {
+        text: "More quality time together",
+        value: "quality-time",
+        emoji: "⏰",
+      },
+      { text: "Feeling more desired", value: "desired", emoji: "💖" },
+      { text: "More romance and surprises", value: "romance", emoji: "🌹" },
+      { text: "Shared future planning", value: "future-planning", emoji: "🏡" },
     ],
   },
   {
     id: 20,
     type: "multi-select",
-    title: "What negative changes do you observe?",
+    title: "What challenges are you currently facing?",
     subtitle: "(Choose up to 3)",
     maxSelections: 3,
     options: [
-      { text: "I feel less motivated", value: "motivation", emoji: "😣" },
-      { text: "I'm feeling much worse", value: "worse", emoji: "😞" },
+      { text: "Lack of quality time", value: "time", emoji: "⏰" },
+      { text: "Communication breakdowns", value: "communication", emoji: "💔" },
+      { text: "Different life goals", value: "goals", emoji: "🎯" },
+      { text: "Financial stress", value: "financial", emoji: "💰" },
+      { text: "Work-life balance issues", value: "work-balance", emoji: "⚖️" },
       {
-        text: "My self-esteem has hit rock bottom",
-        value: "self-esteem",
-        emoji: "😔",
+        text: "Family or external pressures",
+        value: "family-pressure",
+        emoji: "👨‍👩‍👧‍👦",
       },
-      {
-        text: "I've come to dislike my reflection in the mirror",
-        value: "reflection",
-        emoji: "🤢",
-      },
-      { text: "All I do is cry", value: "cry", emoji: "😭" },
-      { text: "I'm avoiding social situations", value: "social", emoji: "😶" },
     ],
   },
   {
     id: 21,
     type: "emoji-options",
-    title: "Have you experienced any issues recently?",
-    options: [
-      { text: "New routine challenges", value: "routine", emoji: "😊" },
-      { text: "Financial adjustments", value: "financial", emoji: "😊" },
-      { text: "Shared commitments", value: "commitments", emoji: "😊" },
-      {
-        text: "Handling questions from family and friends",
-        value: "questions",
-        emoji: "😊",
+    title: "How do you show love to your partner?",
+    genderSpecific: {
+      male: {
+        title: "How do you show love to your wife/girlfriend?",
       },
-      { text: "None of the above", value: "none", emoji: "😊" },
+      female: {
+        title: "How do you show love to your husband/boyfriend?",
+      },
+    },
+    options: [
+      { text: "Through words and compliments", value: "words", emoji: "💬" },
+      { text: "Through physical touch", value: "touch", emoji: "🤗" },
+      { text: "Through acts of service", value: "service", emoji: "🛠️" },
+      { text: "Through gifts and surprises", value: "gifts", emoji: "🎁" },
+      { text: "Through quality time", value: "time", emoji: "⏰" },
     ],
   },
   {
     id: 22,
-    type: "emoji-options",
-    title: "Do you feel this relationship is the best you can have?",
-    options: [
-      { text: "Absolutely", value: "absolutely", emoji: "😊" },
-      {
-        text: "It's hard to imagine anything else",
-        value: "hard-imagine",
-        emoji: "😊",
-      },
-      { text: "It's a difficult question", value: "difficult", emoji: "🤔" },
-    ],
+    type: "rating-scale",
+    title: "How committed are you to improving your relationship?",
+    ratingRange: {
+      min: 1,
+      max: 5,
+      minLabel: "Somewhat committed",
+      maxLabel: "Extremely committed",
+    },
   },
   {
     id: 23,
     type: "multi-select",
-    title: "What shared memories do you and your Ex have?",
+    title: "What shared activities do you enjoy together?",
     maxSelections: 6,
     options: [
-      {
-        text: "Series or movies we loved to watch together",
-        value: "movies",
-        emoji: "🍿",
-      },
-      { text: "Our favorite song", value: "song", emoji: "🎵" },
-      { text: "Our favorite place", value: "place", emoji: "☕" },
-      {
-        text: "A specific place where we first met",
-        value: "first-met",
-        emoji: "🏖️",
-      },
-      { text: "Shared hobby or activity", value: "hobby", emoji: "⚽" },
-      { text: "Identical bracelets", value: "bracelets", emoji: "👫" },
+      { text: "Watching movies or shows", value: "movies", emoji: "🍿" },
+      { text: "Cooking together", value: "cooking", emoji: "👨‍🍳" },
+      { text: "Traveling and exploring", value: "travel", emoji: "✈️" },
+      { text: "Exercise or sports", value: "exercise", emoji: "🏃‍♀️" },
+      { text: "Reading or learning", value: "learning", emoji: "📚" },
+      { text: "Social activities with friends", value: "social", emoji: "👥" },
     ],
   },
   {
     id: 24,
     type: "multi-select",
-    title:
-      "What did your Ex admire about you at the beginning of your relationship?",
+    title: "What does your partner appreciate most about you?",
+    genderSpecific: {
+      male: {
+        title: "What does your wife/girlfriend appreciate most about you?",
+      },
+      female: {
+        title: "What does your husband/boyfriend appreciate most about you?",
+      },
+    },
     maxSelections: 5,
     options: [
-      { text: "My beauty", value: "beauty", emoji: "🤗" },
       { text: "My sense of humor", value: "humor", emoji: "😄" },
-      { text: "My figure", value: "figure", emoji: "🥰" },
-      { text: "My intelligence", value: "intelligence", emoji: "😌" },
-      { text: "My character", value: "character", emoji: "😊" },
+      { text: "My caring nature", value: "caring", emoji: "🤗" },
+      { text: "My intelligence", value: "intelligence", emoji: "🧠" },
+      { text: "My loyalty", value: "loyalty", emoji: "🛡️" },
+      { text: "My passion", value: "passion", emoji: "🔥" },
     ],
   },
   {
     id: 25,
     type: "emoji-options",
-    title: "What was your first date like?",
+    title: "What was your relationship like in the beginning?",
     options: [
-      { text: "Shy and hesitant", value: "shy", emoji: "😳" },
-      { text: "Love at first sight", value: "love-first-sight", emoji: "💝" },
-      { text: "Playful and lighthearted", value: "playful", emoji: "😊" },
-      { text: "Nervous but exciting", value: "nervous", emoji: "😬" },
-      {
-        text: "Memorable and heartwarming",
-        value: "memorable",
-        emoji: "😊",
-      },
-      { text: "Unforgettable and sweet", value: "unforgettable", emoji: "🥰" },
+      { text: "Passionate and intense", value: "passionate", emoji: "🔥" },
+      { text: "Sweet and romantic", value: "romantic", emoji: "💕" },
+      { text: "Fun and playful", value: "playful", emoji: "😄" },
+      { text: "Comfortable and easy", value: "comfortable", emoji: "😌" },
+      { text: "Exciting and adventurous", value: "exciting", emoji: "🎢" },
     ],
   },
   {
     id: 26,
     type: "multi-select",
-    title: "How did you enjoy spending time together?",
+    title: "How do you prefer to spend quality time together?",
     maxSelections: 6,
     options: [
       {
-        text: "Exploring new places and adventures",
-        value: "exploring",
-        emoji: "🏔️",
+        text: "Intimate conversations at home",
+        value: "conversations",
+        emoji: "🏠",
       },
-      { text: "Long walks and talks", value: "walks", emoji: "👫" },
-      { text: "Cozy moments at home", value: "cozy", emoji: "🏠" },
-      { text: "Watching movies and shows", value: "movies", emoji: "📷" },
-      { text: "Engaging in fun activities", value: "activities", emoji: "🏂" },
-      { text: "Fitness or sports activities", value: "fitness", emoji: "🤸" },
+      { text: "Going on adventures", value: "adventures", emoji: "🏔️" },
+      { text: "Romantic dates", value: "dates", emoji: "🍷" },
+      { text: "Relaxing and unwinding", value: "relaxing", emoji: "🛋️" },
+      { text: "Trying new experiences", value: "new-experiences", emoji: "🎭" },
+      { text: "Working on projects together", value: "projects", emoji: "🔨" },
     ],
   },
   {
     id: 27,
     type: "multi-select",
-    title: "How would you describe the positive qualities of your Ex?",
+    title: "What are your partner's best qualities?",
+    genderSpecific: {
+      male: {
+        title: "What are your husband's/boyfriend's best qualities?",
+      },
+      female: {
+        title: "What are your wife's/girlfriend's best qualities?",
+      },
+    },
     maxSelections: 5,
     options: [
-      { text: "Kind and caring", value: "kind", emoji: "🙏" },
-      { text: "Strong and self-confident", value: "strong", emoji: "💪" },
-      { text: "Smart", value: "smart", emoji: "🧠" },
-      { text: "Handsome", value: "handsome", emoji: "👨" },
-      { text: "Passionate", value: "passionate", emoji: "🌹" },
+      { text: "Kind and compassionate", value: "kind", emoji: "💕" },
+      { text: "Strong and reliable", value: "strong", emoji: "💪" },
+      { text: "Intelligent and wise", value: "intelligent", emoji: "🧠" },
+      { text: "Funny and entertaining", value: "funny", emoji: "😄" },
+      { text: "Supportive and encouraging", value: "supportive", emoji: "🤗" },
     ],
   },
   {
     id: 28,
     type: "elements",
-    title: "Which image captures the vibe of your honeymoon phase?",
+    title: "Which image best represents your relationship goals?",
     options: [
       {
-        text: "Road Trip",
-        value: "road-trip",
+        text: "Adventure Together",
+        value: "adventure",
         image: "/air.png",
       },
       {
-        text: "Cozy Home",
-        value: "cozy-home",
+        text: "Cozy Partnership",
+        value: "cozy",
         image: "/fire.png",
       },
       {
-        text: "Winter Romance",
-        value: "winter",
+        text: "Peaceful Harmony",
+        value: "peaceful",
         image: "/water.png",
       },
       {
-        text: "City Nights",
-        value: "city-nights",
+        text: "Stable Foundation",
+        value: "stable",
         image: "/earth.png",
       },
     ],
@@ -435,18 +562,47 @@ export const quizQuestions: QuizQuestionType[] = [
   {
     id: 29,
     type: "rating-scale",
-    title: "How much do you want your Ex back?",
+    title: "How much do you want to strengthen your relationship?",
     ratingRange: {
       min: 1,
       max: 5,
-      minLabel: "Not sure I want",
+      minLabel: "Somewhat",
       maxLabel: "Very much!",
     },
   },
   {
     id: 30,
     type: "text-input",
-    title: "What's your Ex's name?",
+    title: "What's your partner's name?",
+    genderSpecific: {
+      male: {
+        title: "What's your husband's/boyfriend's name?",
+      },
+      female: {
+        title: "What's your wife's/girlfriend's name?",
+      },
+    },
     placeholder: "Name",
   },
 ];
+
+// Function to get questions customized for the selected gender
+export function getQuizQuestions(partnerGender?: string): QuizQuestionType[] {
+  return baseQuizQuestions.map((question) => {
+    if (question.genderSpecific && partnerGender) {
+      const genderSpecific =
+        question.genderSpecific[partnerGender as "male" | "female"];
+      if (genderSpecific) {
+        return {
+          ...question,
+          ...genderSpecific,
+          options: genderSpecific.options || question.options,
+        };
+      }
+    }
+    return question;
+  });
+}
+
+// Export the default questions for backward compatibility
+export const quizQuestions = baseQuizQuestions;

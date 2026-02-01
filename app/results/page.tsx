@@ -99,11 +99,11 @@ export default function ResultsPage() {
       <div className="sticky top-0 bg-white shadow-sm z-50 px-4 py-3">
         <div className="flex items-center justify-between max-w-md mx-auto">
           <h1 className="text-xl font-bold">
-            Re<span className="text-blue-500">l</span>
+            Re<span className="text-purple-500">l</span>
             <span className="text-pink-500">a</span>
             <span className="text-purple-500">t</span>io
           </h1>
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition-colors">
+          <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-200">
             GET MY PLAN
           </button>
         </div>
@@ -114,7 +114,7 @@ export default function ResultsPage() {
         <div className="space-y-6">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl font-bold text-gray-900">Now</h2>
-            <h2 className="text-2xl font-bold text-blue-500">Goal</h2>
+            <h2 className="text-2xl font-bold text-purple-500">Goal</h2>
           </div>
 
           <div className="relative">
@@ -142,7 +142,9 @@ export default function ResultsPage() {
               </div>
               <div>
                 <p className="font-semibold text-gray-900">Goal:</p>
-                <p className="text-blue-500 font-semibold">Get him Back</p>
+                <p className="text-purple-500 font-semibold">
+                  Stronger Relationship
+                </p>
               </div>
             </div>
 
@@ -164,7 +166,7 @@ export default function ResultsPage() {
                 <p className="font-semibold text-gray-900">
                   Probability of Success:
                 </p>
-                <p className="text-blue-500 font-semibold">High</p>
+                <p className="text-purple-500 font-semibold">High</p>
               </div>
             </div>
           </div>
@@ -174,8 +176,8 @@ export default function ResultsPage() {
         <div className="space-y-6">
           <div className="text-center">
             <p className="text-gray-700 mb-2">Here is your Personal</p>
-            <p className="text-blue-500 font-semibold text-lg">
-              Get him Back Plan
+            <p className="text-purple-500 font-semibold text-lg">
+              Relationship Strengthening Plan
             </p>
           </div>
 
@@ -189,7 +191,7 @@ export default function ResultsPage() {
 
           <div className="space-y-4">
             <div className="flex items-start space-x-3">
-              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                 <svg
                   className="w-3 h-3 text-white"
                   fill="currentColor"
@@ -204,14 +206,14 @@ export default function ResultsPage() {
               </div>
               <p className="text-gray-700 leading-relaxed">
                 <span className="font-semibold">
-                  Male behavior decomposed to its core....
+                  Relationship dynamics decoded...
                 </span>{" "}
-                And what exactly 'makes guys tick'
+                Understanding what makes your partnership thrive
               </p>
             </div>
 
             <div className="flex items-start space-x-3">
-              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                 <svg
                   className="w-3 h-3 text-white"
                   fill="currentColor"
@@ -225,15 +227,13 @@ export default function ResultsPage() {
                 </svg>
               </div>
               <p className="text-gray-700 leading-relaxed">
-                <span className="font-semibold">
-                  Buttons women need to push
-                </span>{" "}
-                in order to engage with a man's hard-wired desires
+                <span className="font-semibold">Communication strategies</span>{" "}
+                that create deeper connection and understanding
               </p>
             </div>
 
             <div className="flex items-start space-x-3">
-              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                 <svg
                   className="w-3 h-3 text-white"
                   fill="currentColor"
@@ -247,8 +247,8 @@ export default function ResultsPage() {
                 </svg>
               </div>
               <p className="text-gray-700 leading-relaxed">
-                <span className="font-semibold">Proven techniques</span> men are
-                literally powerless to resist
+                <span className="font-semibold">Proven techniques</span> to
+                build lasting intimacy and trust
               </p>
             </div>
           </div>
@@ -266,7 +266,7 @@ export default function ResultsPage() {
             </div>
             <div className="relative">
               <input type="checkbox" className="sr-only" defaultChecked />
-              <div className="w-12 h-6 bg-blue-500 rounded-full shadow-inner">
+              <div className="w-12 h-6 bg-purple-500 rounded-full shadow-inner">
                 <div className="w-5 h-5 bg-white rounded-full shadow transform translate-x-6 transition-transform"></div>
               </div>
             </div>
@@ -276,8 +276,8 @@ export default function ResultsPage() {
         <div className="text-center space-y-6">
           <div>
             <p className="text-gray-700 mb-2">Here is your Personal</p>
-            <p className="text-blue-500 font-semibold text-lg">
-              Get him Back Plan
+            <p className="text-purple-500 font-semibold text-lg">
+              Relationship Strengthening Plan
             </p>
           </div>
 
@@ -287,14 +287,14 @@ export default function ResultsPage() {
                 key={plan.id}
                 className={`relative border-2 rounded-lg p-4 cursor-pointer transition-colors ${
                   selectedPlan === plan.id
-                    ? "border-blue-500 bg-blue-50"
+                    ? "border-purple-500 bg-purple-50"
                     : "border-gray-200 bg-white"
                 }`}
                 onClick={() => setSelectedPlan(plan.id)}
               >
                 {plan.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-purple-500 text-white px-4 py-1 rounded-full text-sm font-medium">
                       most popular
                     </span>
                   </div>
@@ -305,7 +305,7 @@ export default function ResultsPage() {
                     <div
                       className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                         selectedPlan === plan.id
-                          ? "border-blue-500 bg-blue-500"
+                          ? "border-purple-500 bg-purple-500"
                           : "border-gray-300"
                       }`}
                     >
@@ -324,7 +324,9 @@ export default function ResultsPage() {
                       )}
                     </div>
                     <div className="text-left">
-                      <p className="font-semibold text-blue-500">{plan.name}</p>
+                      <p className="font-semibold text-purple-500">
+                        {plan.name}
+                      </p>
                       <p className="text-sm text-gray-500 line-through">
                         {plan.originalPrice}
                       </p>
@@ -332,7 +334,7 @@ export default function ResultsPage() {
                   </div>
 
                   <div className="text-right">
-                    <div className="bg-blue-500 text-white px-3 py-1 rounded-full">
+                    <div className="bg-purple-500 text-white px-3 py-1 rounded-full">
                       <span className="text-lg font-bold">{plan.price}</span>
                       <span className="text-sm ml-1">{plan.period}</span>
                     </div>
@@ -342,7 +344,7 @@ export default function ResultsPage() {
             ))}
           </div>
 
-          <button className="w-full bg-blue-600 text-white py-4 px-6 rounded-full font-semibold text-lg hover:bg-blue-700 transition-colors">
+          <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-full font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200">
             GET MY PLAN
           </button>
 
@@ -417,7 +419,7 @@ export default function ResultsPage() {
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-6 h-6 text-blue-500 fill-current"
+                    className="w-6 h-6 text-purple-500 fill-current"
                     viewBox="0 0 20 20"
                   >
                     <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
@@ -443,7 +445,7 @@ export default function ResultsPage() {
             <div className="space-y-4">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                     <svg
                       className="w-3 h-3 text-white"
                       fill="currentColor"
@@ -466,7 +468,7 @@ export default function ResultsPage() {
         {/* Women Love Relatio Section */}
         <div className="space-y-6">
           <h3 className="text-center text-xl font-semibold">
-            <span className="text-blue-500">Women</span>{" "}
+            <span className="text-purple-500">Women</span>{" "}
             <span className="text-pink-500">💖</span>{" "}
             <span className="text-purple-500">Relatio</span>
           </h3>
