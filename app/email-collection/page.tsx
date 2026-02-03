@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import { setReportDraft } from "@/lib/report-utils";
 
 export default function EmailCollectionPage() {
   const [email, setEmail] = useState("");
 
   const handleContinue = () => {
     if (email.trim()) {
-      // Store email and redirect to results
       localStorage.setItem("userEmail", email);
+      setReportDraft({ email: email.trim() });
       window.location.href = "/results";
     }
   };

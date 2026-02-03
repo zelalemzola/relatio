@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ResultsPage() {
+  const router = useRouter();
   const [selectedPlan, setSelectedPlan] = useState("4-week");
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
@@ -15,6 +17,7 @@ export default function ResultsPage() {
       price: "$2.00",
       period: "per day",
       popular: true,
+      amount: 59.99,
     },
     {
       id: "12-week",
@@ -23,6 +26,7 @@ export default function ResultsPage() {
       price: "$1.11",
       period: "per day",
       popular: false,
+      amount: 99.99,
     },
     {
       id: "24-week",
@@ -31,8 +35,19 @@ export default function ResultsPage() {
       price: "$0.89",
       period: "per day",
       popular: false,
+      amount: 159.99,
     },
   ];
+
+  const handleGetMyPlan = () => {
+    const plan = plans.find((p) => p.id === selectedPlan);
+    if (!plan) return;
+    const params = new URLSearchParams({
+      plan: plan.name,
+      amount: String(plan.amount),
+    });
+    router.push(`/payment?${params.toString()}`);
+  };
 
   const benefits = [
     "Elevated self-esteem",
@@ -103,7 +118,10 @@ export default function ResultsPage() {
             <span className="text-pink-500">a</span>
             <span className="text-purple-500">t</span>io
           </h1>
-          <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-200">
+          <button
+            onClick={handleGetMyPlan}
+            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
+          >
             GET MY PLAN
           </button>
         </div>
@@ -344,7 +362,10 @@ export default function ResultsPage() {
             ))}
           </div>
 
-          <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-full font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200">
+          <button
+            onClick={handleGetMyPlan}
+            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-full font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
+          >
             GET MY PLAN
           </button>
 

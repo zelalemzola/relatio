@@ -5,6 +5,7 @@ import { QuizHeader } from "@/components/quiz/QuizHeader";
 import { QuizQuestion } from "@/components/quiz/QuizQuestion";
 import { AnalysisModal } from "@/components/quiz/AnalysisModal";
 import { getQuizQuestions, baseQuizQuestions } from "@/lib/quiz-data";
+import { setReportDraft } from "@/lib/report-utils";
 
 export default function QuizPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -59,7 +60,9 @@ export default function QuizPage() {
       if (currentQuestion < quizQuestions.length - 1) {
         setCurrentQuestion((prev) => prev + 1);
       } else {
-        // Quiz completed, redirect to analysis
+        // Quiz completed: save answers for report, then redirect to analysis
+        const finalAnswers = { ...answers, [currentQuestion]: answer };
+        setReportDraft({ answers: finalAnswers });
         window.location.href = "/analysis";
       }
     }, 300);
@@ -80,7 +83,8 @@ export default function QuizPage() {
     if (currentQuestion < quizQuestions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
-      // Quiz completed, redirect to analysis
+      // Quiz completed: save answers for report, then redirect to analysis
+      setReportDraft({ answers });
       window.location.href = "/analysis";
     }
   };
@@ -92,7 +96,8 @@ export default function QuizPage() {
       if (currentQuestion < quizQuestions.length - 1) {
         setCurrentQuestion((prev) => prev + 1);
       } else {
-        // Quiz completed, redirect to analysis
+        // Quiz completed: save answers for report, then redirect to analysis
+        setReportDraft({ answers });
         window.location.href = "/analysis";
       }
     }, 500);
