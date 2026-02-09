@@ -2,10 +2,17 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import convertToSubcurrency from "@/lib/convertToSubcurrency";
+import CheckoutPage from "@/components/payment/CheckoutPage";
+import { Shield } from "lucide-react";
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!,
+);
 
 export default function ResultsPage() {
-  const router = useRouter();
   const [selectedPlan, setSelectedPlan] = useState("4-week");
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
@@ -39,15 +46,7 @@ export default function ResultsPage() {
     },
   ];
 
-  const handleGetMyPlan = () => {
-    const plan = plans.find((p) => p.id === selectedPlan);
-    if (!plan) return;
-    const params = new URLSearchParams({
-      plan: plan.name,
-      amount: String(plan.amount),
-    });
-    router.push(`/payment?${params.toString()}`);
-  };
+  const selectedPlanData = plans.find((p) => p.id === selectedPlan)!;
 
   const benefits = [
     "Elevated self-esteem",
@@ -118,12 +117,6 @@ export default function ResultsPage() {
             <span className="text-pink-500">a</span>
             <span className="text-purple-500">t</span>io
           </h1>
-          <button
-            onClick={handleGetMyPlan}
-            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
-          >
-            GET MY PLAN
-          </button>
         </div>
       </div>
 
@@ -199,13 +192,13 @@ export default function ResultsPage() {
             </p>
           </div>
 
-          <div className="relative">
+          {/* <div className="relative">
             <img
               src="/personalplangraph.webp"
               alt="Personal plan progress graph"
               className="w-full rounded-lg"
             />
-          </div>
+          </div> */}
 
           <div className="space-y-4">
             <div className="flex items-start space-x-3">
@@ -272,23 +265,7 @@ export default function ResultsPage() {
           </div>
 
           {/* ADD FREE PDF Toggle */}
-          <div className="flex items-center justify-between bg-gray-50 rounded-lg p-4">
-            <div className="flex items-center space-x-3">
-              <div className="text-2xl">❤️</div>
-              <div>
-                <p className="font-semibold text-gray-900">ADD FREE PDF</p>
-                <p className="text-sm text-gray-600">
-                  10 social media post templates
-                </p>
-              </div>
-            </div>
-            <div className="relative">
-              <input type="checkbox" className="sr-only" defaultChecked />
-              <div className="w-12 h-6 bg-purple-500 rounded-full shadow-inner">
-                <div className="w-5 h-5 bg-white rounded-full shadow transform translate-x-6 transition-transform"></div>
-              </div>
-            </div>
-          </div>
+
         </div>
         {/* Pricing Plans */}
         <div className="text-center space-y-6">
@@ -362,12 +339,30 @@ export default function ResultsPage() {
             ))}
           </div>
 
-          <button
-            onClick={handleGetMyPlan}
-            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-full font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
-          >
-            GET MY PLAN
-          </button>
+          {/* Inline Stripe Payment Form */}
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <div className="flex items-center gap-2 rounded-full bg-purple-100 px-3 py-1.5 text-sm font-medium text-purple-700 w-fit mb-4">
+              <Shield className="h-3.5 w-3.5" />
+              Secure checkout
+            </div>
+            <p className="text-sm text-gray-600 mb-4">
+              Selected: <span className="font-semibold text-purple-600">{selectedPlanData.name}</span> — ${selectedPlanData.amount.toFixed(2)}
+            </p>
+            <Elements
+              key={selectedPlan}
+              stripe={stripePromise}
+              options={{
+                mode: "payment",
+                amount: convertToSubcurrency(selectedPlanData.amount),
+                currency: "usd",
+              }}
+            >
+              <CheckoutPage
+                amount={selectedPlanData.amount}
+                plan={selectedPlanData.name}
+              />
+            </Elements>
+          </div>
 
           <div className="text-xs text-gray-500 leading-relaxed">
             <p>

@@ -29,10 +29,8 @@ export default function EmailCollectionPage() {
         {/* Main content */}
         <div className="mb-8">
           <p className="text-gray-700 mb-2">Enter your email to get</p>
-          <p className="text-gray-700 mb-4">personal</p>
-          <p className="text-blue-500 font-semibold text-lg">
-            Get Your Ex Back Plan
-          </p>
+          <p className="text-gray-700 mb-4">personalized relationship plan</p>
+         
         </div>
 
         {/* Email input */}

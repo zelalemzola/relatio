@@ -425,10 +425,7 @@ export function QuizQuestion({
         </div>
 
         <button
-          onClick={() => {
-            onAnswer("continue");
-            onContinue();
-          }}
+          onClick={() => onAnswer("continue")}
           className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-lg font-medium hover:from-purple-700 hover:to-pink-700 transition-all duration-200"
         >
           Continue
